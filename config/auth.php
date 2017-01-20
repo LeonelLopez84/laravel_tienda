@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Petfamily\User::class,
+            'model' => Ecommerce\User::class,
         ],
 
         // 'users' => [

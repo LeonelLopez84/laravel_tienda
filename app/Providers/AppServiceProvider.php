@@ -1,6 +1,6 @@
 <?php
 
-namespace Petfamily\Providers;
+namespace Ecommerce\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

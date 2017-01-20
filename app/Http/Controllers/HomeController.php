@@ -1,6 +1,6 @@
 <?php
 
-namespace Petfamily\Http\Controllers;
+namespace Ecommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
 

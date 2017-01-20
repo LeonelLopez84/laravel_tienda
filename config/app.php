@@ -167,16 +167,16 @@ return [
          * Package Service Providers...
          */
 
-        //
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        Petfamily\Providers\AppServiceProvider::class,
-        Petfamily\Providers\AuthServiceProvider::class,
-        // Petfamily\Providers\BroadcastServiceProvider::class,
-        Petfamily\Providers\EventServiceProvider::class,
-        Petfamily\Providers\RouteServiceProvider::class,
+        Ecommerce\Providers\AppServiceProvider::class,
+        Ecommerce\Providers\AuthServiceProvider::class,
+        // Ecommerce\Providers\BroadcastServiceProvider::class,
+        Ecommerce\Providers\EventServiceProvider::class,
+        Ecommerce\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -225,6 +225,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

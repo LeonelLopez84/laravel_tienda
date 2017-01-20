@@ -1,10 +1,10 @@
 <?php
 
-namespace Petfamily\Http\Controllers\Auth;
+namespace Ecommerce\Http\Controllers\Auth;
 
-use Petfamily\User;
+use Ecommerce\User;
 use Validator;
-use Petfamily\Http\Controllers\Controller;
+use Ecommerce\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller

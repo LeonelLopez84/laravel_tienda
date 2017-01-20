@@ -1,6 +1,6 @@
 <?php
 
-namespace Petfamily\Http\Middleware;
+namespace Ecommerce\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 

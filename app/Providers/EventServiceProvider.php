@@ -1,6 +1,6 @@
 <?php
 
-namespace Petfamily\Providers;
+namespace Ecommerce\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Petfamily\Events\SomeEvent' => [
-            'Petfamily\Listeners\EventListener',
+        'Ecommerce\Events\SomeEvent' => [
+            'Ecommerce\Listeners\EventListener',
         ],
     ];
 
