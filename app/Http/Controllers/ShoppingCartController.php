@@ -6,20 +6,29 @@ use Illuminate\Http\Request;
 use Ecommerce\Http\Requests;
 
 use Ecommerce\ShoppingCart;
+use Ecommerce\PayPal;
 
 class ShoppingCartController extends Controller
 {
  
- 		public function index()
- 		{
- 			$shopping_cart_id=\Session::get("shopping_cart_id");
+ 	public function index()
+ 	{
+ 		$shopping_cart_id=\Session::get("shopping_cart_id");
 
-      $shopping_cart= ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
+      	$shopping_cart= ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
 
-      $products = $shopping_cart->products()->get();
+      	$paypal = new PayPal($shopping_cart);
 
-      $total = $shopping_cart->total();
+      	$payment = $paypal->generate();
 
-      return view("shopping_cart.index",["products"=>$products,"total"=>$total]);
- 		}
+      	return redirect($payment->getApprovalLink());
+      	/*
+      	$products = $shopping_cart->products()->get();
+	
+      	$total = $shopping_cart->total();
+
+	    return view("shopping_cart.index",["products"=>$products,"total"=>$total]);*/
+ 	}
+
+
 }

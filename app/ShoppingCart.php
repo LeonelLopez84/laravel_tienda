@@ -29,28 +29,33 @@ class ShoppingCart extends Model
 			return $this->products()->sum("pricing");
 		}
 
-    public static function findOrCreateBySessionID($shopping_cart_id)
-    {
-    	if(!is_null($shopping_cart_id))
-    	{
-    		return self::findBySession($shopping_cart_id);
-    	}else{
-				return self::createWithoutSession();
-    	}
-    }
+		public function totalUSD()
+		{
+			return $this->products()->sum("pricing") / 100;
+		}
 
-    public static function findBySession($shopping_cart_id)
-    {
-    	return ShoppingCart::find($shopping_cart_id);
-    }
+	    public static function findOrCreateBySessionID($shopping_cart_id)
+	    {
+	    	if(!is_null($shopping_cart_id))
+	    	{
+	    		return self::findBySession($shopping_cart_id);
+	    	}else{
+					return self::createWithoutSession();
+	    	}
+	    }
 
-    public static function createWithoutSession()
-    {
+	    public static function findBySession($shopping_cart_id)
+	    {
+	    	return ShoppingCart::find($shopping_cart_id);
+	    }
 
-    	return ShoppingCart::create([
-    			"status"=>"incompleted"
-    		]);
-    }
+	    public static function createWithoutSession()
+	    {
+
+	    	return ShoppingCart::create([
+	    			"status"=>"incompleted"
+	    		]);
+	    }
 
 
 }

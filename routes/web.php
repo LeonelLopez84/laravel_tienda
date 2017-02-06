@@ -15,6 +15,8 @@ Route::get('/', 'MainController@home');
 
 Route::get('/carrito', 'ShoppingCartController@index');
 
+Route::get('/payments/store', 'PaymentsController@store');
+
 Auth::routes();
 
 Route::resource('/products','ProductsController');
