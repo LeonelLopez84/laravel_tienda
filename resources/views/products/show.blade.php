@@ -12,7 +12,7 @@
 					<div class="col-xs-12 col-sm-6">
 						<p><strong>Descripción</strong></p>
 						<p>{{$product->description}}</p>
-						<a href="#" class="btn btn-success">Agregar al carrito</a>
+						<p>@include("in_shopping_carts.form",["product"=>$product])</p>
 					</div>
 					
 				</div>

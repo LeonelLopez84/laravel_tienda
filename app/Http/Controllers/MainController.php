@@ -10,7 +10,7 @@ class MainController extends Controller
     public function  home()
     {
 
-        return view("main.home",["name"=>'leonel']);
+        return view("main.home");
     }
     
 }

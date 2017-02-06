@@ -31,7 +31,7 @@
 		</table>
 		<div class="floating">		
 			<a class="btn btn-primary" href="{{url('/products/create')}}">
-				<i class="material-icons">Add</i>
+				<i class="material-icons"></i>Add
 			</a>
 		</div>
 	</div>

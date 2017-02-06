@@ -168,6 +168,7 @@ return [
          */
 
         Collective\Html\HtmlServiceProvider::class,
+        Ecommerce\Providers\ShoppingCartProvider::class,
 
         /*
          * Application Service Providers...
