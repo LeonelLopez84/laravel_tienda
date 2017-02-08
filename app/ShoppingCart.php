@@ -9,6 +9,16 @@ class ShoppingCart extends Model
 
 		public $fillable=["status"];
 
+		public function generateCustomID()
+		{
+
+		}
+
+		public function updateCustomID()
+		{
+
+		}
+
 		public function inShoppingCarts()
 		{
 			return $this->hasMany("Ecommerce\InShoppingCart");

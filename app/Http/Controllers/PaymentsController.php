@@ -7,6 +7,7 @@ use Ecommerce\Http\Requests;
 
 use Ecommerce\ShoppingCart;
 use Ecommerce\PayPal;
+use Ecommerce\Order;
 
 class PaymentsController extends Controller
 {
@@ -18,6 +19,12 @@ class PaymentsController extends Controller
 
          $paypal=  new PayPal($shopping_cart);
 
-         dd($paypal->execute($request->paymentId,$request->PayerID));
+         $response = $paypal->execute($request->paymentId,$request->PayerID);
+
+         if($response->state == "approved"){
+         	$order= Order::CreateFromPayPalResponse($response,$shopping_cart);
+         }
+
+         return view("shopping_cart.completed",["shopping_cart",$shopping_cart,"order"=>$order]);
     }
 }
