@@ -6,10 +6,18 @@
 	<h1>Compra completada</h1>
 </header>
 
-<div class="container">
+<div class="container" id="order">
 	<div class="card large-padding">
 		<h3>Tu pago fue procesado <span class="{{$order->status}}">{{$order->status}}</span></h3>
 		<p>Corrobora los detalles de tu envio:</p>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6">
+				Name
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6">
+			{{$order->recipient_name}}
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 				Correo
@@ -52,6 +60,12 @@
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
 			{{ "$order->state $order->contry_code"}}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6">
+				<a href="{{url('/compras/'.$shopping_cart->customid)}}">Link permanete de tu compra</a>
 			</div>
 		</div>
 

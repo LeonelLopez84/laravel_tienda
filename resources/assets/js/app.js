@@ -1,20 +1,19 @@
+$.fn.editable.defaults.mode='inline';
+$.fn.editable.defaults.ajaxOptions={type:'POST'};
+$.fn.editable.defaults.send = "always";
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+$(document).ready(function() {
 
-require('./bootstrap');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
- */
-
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
-    el: '#app'
+	$(".set-guide-number").editable({ajaxOptions: {
+     type: 'PUT'
+   }  });
+	$(".select-status").editable(
+		{
+			source:[
+				{value:"creado",text:"Creado"},
+				{value:"envio",text:"Enviado"},
+				{value:"recibido",text:"Recibido"}
+			]
+		});
 });

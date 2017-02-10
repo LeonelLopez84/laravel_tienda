@@ -22,9 +22,11 @@ class PaymentsController extends Controller
          $response = $paypal->execute($request->paymentId,$request->PayerID);
 
          if($response->state == "approved"){
-         	$order= Order::CreateFromPayPalResponse($response,$shopping_cart);
+            
+         	$order= Order::createFromPayPalResponse($response,$shopping_cart);
+            \Session::remove("shopping_cart_id");
+            $shopping_cart->approve();
          }
-
-         return view("shopping_cart.completed",["shopping_cart",$shopping_cart,"order"=>$order]);
+        return view("shopping_cart.completed",["shopping_cart"=>$shopping_cart,"order"=>$order]);
     }
 }
