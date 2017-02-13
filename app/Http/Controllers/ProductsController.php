@@ -9,6 +9,10 @@ use Ecommerce\Http\Requests;
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>'show']);
+    }
     /**
      * Display a listing of the resource.
      *

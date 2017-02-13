@@ -8,9 +8,17 @@ use Ecommerce\Http\Requests;
 use Ecommerce\ShoppingCart;
 use Ecommerce\PayPal;
 
+use Illuminate\Support\Facades\Mail;
+use Ecommerce\Mail\OrderCreated;
+
 class ShoppingCartController extends Controller
 {
  
+	public function __construct()
+	{
+		$this->middleware('shoppingcart');
+	}
+
  	public function show($id)
  	{
  		$shopping_cart = ShoppingCart::where('customid',$id)->first();
@@ -18,17 +26,24 @@ class ShoppingCartController extends Controller
  		return view("shopping_cart.completed",["shopping_cart"=>$shopping_cart,"order"=>$order]);
  	}
 
- 	public function index()
+ 	public function index(Request $request)
  	{
- 		$shopping_cart_id=\Session::get("shopping_cart_id");
 
-      	$shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
+            Mail::to("harry1607@hotmail.com")->send(new OrderCreated());
 
-      	$paypal = new PayPal($shopping_cart);
+ 		$shopping_cart = $request->shopping_cart;
+ 		
+      	//$paypal = new PayPal($shopping_cart);
 
-      	$payment = $paypal->generate();
+      	//$payment = $paypal->generate();
 
-      	return redirect($payment->getApprovalLink());      
+      	//return redirect($payment->getApprovalLink());      
+
+      	$products =$shopping_cart->products()->get();
+
+      	$total =$shopping_cart->total();
+
+      	return view("shopping_cart.index",["products"=>$products,"total"=>$total]);
  	}
 
 }

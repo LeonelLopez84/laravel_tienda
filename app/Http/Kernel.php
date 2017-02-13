@@ -52,5 +52,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Ecommerce\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'shoppingcart' => \Ecommerce\Http\Middleware\BuildShoppingCart::class,
+        'first.user' => \Ecommerce\Http\Middleware\ValidateFirstUserSignUp::class,
     ];
 }

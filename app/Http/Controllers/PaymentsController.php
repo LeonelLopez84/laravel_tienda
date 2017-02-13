@@ -11,11 +11,14 @@ use Ecommerce\Order;
 
 class PaymentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('shoppingcart');
+    }
+
     public function store(Request $request)
     {
-    	$shopping_cart_id=\Session::get("shopping_cart_id");
-
-         $shopping_cart= ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
+    	$shopping_cart = $request->shopping_cart;
 
          $paypal=  new PayPal($shopping_cart);
 
