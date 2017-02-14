@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@index');
 Route::resource('/products','ProductsController');
 
 Route::get('/carrito', 'ShoppingCartController@index');
+Route::post('/carrito', 'ShoppingCartController@checkout');
+
 Route::resource('/compras', 'ShoppingCartController@show');
 
 Route::get('/payments/store', 'PaymentsController@store');
@@ -29,6 +31,24 @@ Route::resource('/in_shopping_carts','InShoppingCartController',
 
 Route::resource('/orders','OrdersController',
 	  ['only'=>['index','update'] ]);
+
+Route::get('products/images/{filename}',function($filename){
+
+	$path=storage_path("app/images/$filename");
+
+	if(!\File::exists($path)) abort(404);
+
+	$file = \File::get($path);
+
+	$type =\File::mimeType($path);
+
+	$response = Response::make($file,200);
+
+	$response->header("Content-Type",$type);
+
+	return $response;
+
+});
 
 
 

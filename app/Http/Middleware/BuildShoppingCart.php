@@ -21,7 +21,7 @@ class BuildShoppingCart
         $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
 
         $request->shopping_cart = $shopping_cart;
-
+        
         return $next($request);
     }
 }

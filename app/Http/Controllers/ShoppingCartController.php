@@ -7,9 +7,9 @@ use Ecommerce\Http\Requests;
 
 use Ecommerce\ShoppingCart;
 use Ecommerce\PayPal;
+use Ecommerce\Order;
 
-use Illuminate\Support\Facades\Mail;
-use Ecommerce\Mail\OrderCreated;
+
 
 class ShoppingCartController extends Controller
 {
@@ -18,6 +18,17 @@ class ShoppingCartController extends Controller
 	{
 		$this->middleware('shoppingcart');
 	}
+
+      public function checkout(Request $request)
+      {
+            $shopping_cart = $request->shopping_cart;
+
+            $paypal = new PayPal($shopping_cart);
+
+            $payment = $paypal->generate();
+
+            return redirect($payment->getApprovalLink());
+      }
 
  	public function show($id)
  	{
@@ -29,15 +40,7 @@ class ShoppingCartController extends Controller
  	public function index(Request $request)
  	{
 
-            Mail::to("harry1607@hotmail.com")->send(new OrderCreated());
-
  		$shopping_cart = $request->shopping_cart;
- 		
-      	//$paypal = new PayPal($shopping_cart);
-
-      	//$payment = $paypal->generate();
-
-      	//return redirect($payment->getApprovalLink());      
 
       	$products =$shopping_cart->products()->get();
 

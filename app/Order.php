@@ -4,10 +4,27 @@ namespace Ecommerce;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\Mail;
+use Ecommerce\Mail\OrderCreated;
+use Ecommerce\Mail\OrderUpdated;
+
 class Order extends Model
 {
 	protected $fillable=['id','recipient_name','shopping_cart_id','line1','line2','city','postal_code','state','email','status','guide_number','total'];
 
+    public function sendMail()
+    {
+        Mail::to("harry1607@hotmail.com")->send(new OrderCreated($this));
+    }
+
+    public function sendUpdateMail()
+    {
+        Mail::to("harry1607@hotmail.com")->send(new OrderUpdated($this));
+    }
+    public function shoppingCartID()
+    {
+        return $this->shopping_cart->customid;
+    }
     public function scopeLatest($query)
     {
         return $query->orderID()->monthly();
@@ -26,6 +43,11 @@ class Order extends Model
 	{
 		return "$this->line1 $this->line2";
 	}
+
+    public function shopping_cart()
+    {
+        return $this->belongsTo('Ecommerce\ShoppingCart');
+    }
 
     public static function  totalMonthCount()
     {

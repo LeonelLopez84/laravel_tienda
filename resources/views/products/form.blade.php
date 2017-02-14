@@ -1,10 +1,14 @@
-{{ Form::open(['url'=>$url,'method'=>$method]) }}
+{{ Form::open(['url'=>$url,'method'=>$method,'files'=>true]) }}
 			
 <div class="form-group">
 	{{ Form::text('title',$product->title,['class'=>'form-control','placeholdr'=>'Titulo']) }}
 </div>
 <div class="form-group">
 	{{ Form::number('pricing',$product->pricing,['class'=>'form-control','placeholder'=>'Precio del producto']) }}
+</div>
+
+<div class="">
+{{Form::file('cover')}}		
 </div>
 
 <div class="form-group">

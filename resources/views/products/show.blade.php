@@ -7,7 +7,9 @@
 				<h1>{{$product->title}}</h1>
 				<div class="row">
 					<div class="col-xs-12 col-sm-6">
-						
+						@if($product->extension)
+						<img src="{{url("/products/images/{$product->id}.{$product->extension}")}}" class="img-thumbnail">
+						@endif
 					</div>
 					<div class="col-xs-12 col-sm-6">
 						<p><strong>Descripción</strong></p>

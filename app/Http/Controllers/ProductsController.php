@@ -43,6 +43,8 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+        $hasFile = $request->hasFile('cover') && $request->cover->isValid();
+
         $Product=new Product;
 
         $Product->title=$request->title;
@@ -50,8 +52,17 @@ class ProductsController extends Controller
         $Product->pricing = $request->pricing;
         $Product->user_id = Auth::id();
 
+        if($hasFile){
+            $Product->extension = $request->cover->extension();
+
+        }
+
         if($Product->save())
         {
+            if($hasFile){
+                $request->cover->storeAs('images',"{$Product->id}.{$Product->extension}");
+            }
+
             return redirect("/products");
         }else{
             return view("products.create",["product"=>$product]);

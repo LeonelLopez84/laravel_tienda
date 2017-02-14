@@ -7,12 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderCreated extends Mailable
+class OrderUpdated extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $order;
-    public $products;
 
     /**
      * Create a new message instance.
@@ -21,8 +20,7 @@ class OrderCreated extends Mailable
      */
     public function __construct($order)
     {
-        $this->order = $order;
-         $this->products = $order->shopping_cart->products()->get();
+         $this->order = $order;
     }
 
     /**
@@ -33,6 +31,6 @@ class OrderCreated extends Mailable
     public function build()
     {
         return $this->from("harryextends@gmail.com")
-                    ->view('mailers.order');
+                    ->view('mailers.order_updated');
     }
 }

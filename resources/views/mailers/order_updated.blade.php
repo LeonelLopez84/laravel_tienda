@@ -404,7 +404,7 @@
                                                         <td valign="top" class="bodyContent">
                                                             <div mc:edit="std_content00">
                                                                 <h1 class="h1">Recibo de tu pago en nuestra Tienda</h1>
-                                                                <strong>¡Hola!: {{$order->email}} </strong> Te enviamos los datos de tu compra.
+                                                                <strong>¡Hola!: {{$order->email}} </strong> Se actualizo la información de tu pedido
                                                             </div>
 														</td>
                                                     </tr>
@@ -413,20 +413,46 @@
                                                           <table border="0" cellpadding="10" cellspacing="0" width="100%" class="templateDataTable">
                                                               <tr>
                                                                   <th scope="col" valign="top" width="25%" class="dataTableHeading" mc:edit="data_table_heading00">
-                                                                    Producto
+                                                                    
                                                                   </th>
                                                                   <th scope="col" valign="top" width="25%" class="dataTableHeading" mc:edit="data_table_heading01">
-                                                                   Precio
+                                                                   Estado
                                                                   </th>
                                                                   
                                                               </tr>
-
-                                                              @foreach($products as $product)
 																	<tr mc:repeatable>
-																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">{{$product->title}}</td>
-																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">{{$product->pricing}}</td>
-																	</tr>
-																@endforeach
+																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		Número de guia
+																		</td>
+																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		{{$order->guide_number}}
+																	</td>
+															  </tr>
+															   <tr mc:repeatable>
+																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		Estatus
+																		</td>
+																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		{{$order->status}}
+																	</td>
+															  </tr>
+																<tr mc:repeatable>
+																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		Dirección
+																		</td>
+																		<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		{{$order->address()}}
+																	</td>
+															  </tr>
+
+															  <tr mc:repeatable>
+																	<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																	Nombre recibe
+																	</td>
+																	<td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+																		{{$order->recipient_name}}
+																	</td>
+															  </tr>
                                                           </table>
                                                         </td>
                                                     </tr>
@@ -436,8 +462,7 @@
                                                             	<tr>
                                                                 	<td valign="middle" class="templateButtonContent">
                                                                     	<div mc:edit="std_content02">
-                                                                    	
-                                                                        <a href="{{url('/compras/'.$order->shoppingCartID())}}" target="_blank">Link permanente de tu carrito de compras.</a>
+                                                                        	<a href="{{url('/compras/'.$order->shoppingCartID())}}" target="_blank">Link permanente de tu carrito de compras.</a>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
