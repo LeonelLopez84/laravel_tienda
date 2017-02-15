@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 use Ecommerce\Order;
+use Ecommerce\ShoppingCart;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,8 +30,12 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        ShoppingCart::updated(function($ShoppingCart){
+            $ShoppingCart->sendMail();
+        });
+
         Order::created(function($order){
-            $order->sendMail();
+            //$order->sendMail();
         });
 
         Order::updated(function($order){

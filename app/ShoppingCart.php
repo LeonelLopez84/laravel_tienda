@@ -9,6 +9,11 @@ class ShoppingCart extends Model
 
 	public $fillable=["status"];
 
+	public function sendMail()
+    {
+        Mail::to("harry1607@hotmail.com")->send(new OrderCreated($this));
+    }
+
 	public function approve()
 	{
 		$this->updateCustomIDAndStatus();
