@@ -1,3 +1,9 @@
+.circle-shopping-cart {
+  background-color: #232980;
+  border-radius: 50%;
+  padding: .8em;
+}
+
 .navbar {
   margin-bottom: 0px;
 }
@@ -23,6 +29,11 @@
   bottom: 2em;
   right: 2em;
   z-index: 100;
+}
+
+.products-center div[class^='col'] {
+  margin-top: 1em;
+  min-height: 50vh;
 }
 
 .product {
@@ -67,6 +78,35 @@
 
 #order .row {
   padding: 10px;
+}
+
+.creado {
+  background-color: #d4e157;
+}
+
+.highlight {
+  -webkit-animation: highlight 1.5s;
+  animation: highlight 1.5s;
+}
+
+@-webkit-keyframes highlight {
+  50% {
+    background-color: #ffff00;
+    color: black;
+  }
+  100% {
+    background-color: inline;
+  }
+}
+
+@keyframes highlight {
+  50% {
+    background-color: #ffff00;
+    color: black;
+  }
+  100% {
+    background-color: inline;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */
