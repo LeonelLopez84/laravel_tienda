@@ -30,12 +30,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        ShoppingCart::updated(function($ShoppingCart){
-            $ShoppingCart->sendMail();
-        });
 
         Order::created(function($order){
-            //$order->sendMail();
+            $order->shopping_cart->approve();
+            $order->sendMail();
         });
 
         Order::updated(function($order){

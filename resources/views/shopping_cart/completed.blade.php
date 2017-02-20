@@ -62,7 +62,6 @@
 			{{ "$order->state $order->contry_code"}}
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 				<a href="{{url('/compras/'.$shopping_cart->customid)}}">Link permanete de tu compra</a>
