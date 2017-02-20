@@ -7,6 +7,7 @@ use Ecommerce\Http\Requests;
 use Ecommerce\InShoppingCart;
 use Ecommerce\ShoppingCart;
 
+
 class InShoppingCartController extends Controller
 {
 
@@ -46,5 +47,11 @@ class InShoppingCartController extends Controller
         }else{
             return back();;
         }
+    }
+
+    public function destroy($id)
+    {
+        InShoppingCart::destroy($id);
+        return redirect('/carrito');
     }
 }

@@ -33,7 +33,7 @@
 
 .products-center div[class^='col'] {
   margin-top: 1em;
-  min-height: 50vh;
+  min-height: 30vh;
 }
 
 .product {
@@ -107,6 +107,11 @@
   100% {
     background-color: inline;
   }
+}
+
+#list-products .img-thumbnail, #list-carrito .img-thumbnail {
+  max-width: 250px;
+  height: auto;
 }
 
 /*# sourceMappingURL=app.css.map */

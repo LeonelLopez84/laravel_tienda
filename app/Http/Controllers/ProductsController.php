@@ -103,15 +103,25 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $hasFile = $request->hasFile('cover') && $request->cover->isValid();
+        
         $Product=Product::find($id);
 
         $Product->title=$request->title;
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
+        $Product->user_id = Auth::id();
 
+        if($hasFile){
+            $Product->extension = $request->cover->extension();
+
+        }
 
         if($Product->save())
         {
+            if($hasFile){
+                $request->cover->storeAs('images',"{$Product->id}.{$Product->extension}");
+            }
             return redirect("/products");
         }else{
             return view("products.edit",["product"=>$product]);

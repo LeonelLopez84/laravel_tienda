@@ -27,7 +27,7 @@ Route::resource('/compras', 'ShoppingCartController@show');
 Route::get('/payments/store', 'PaymentsController@store');
 
 Route::resource('/in_shopping_carts','InShoppingCartController',
-	  ['only'=>['store','destroy'] ]);
+		['only'=>['store','destroy'] ]);
 
 Route::resource('/orders','OrdersController',
 	  ['only'=>['index','update'] ]);

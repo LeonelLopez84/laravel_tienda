@@ -38,7 +38,7 @@ class ShoppingCart extends Model
 
 	public function products()
 	{
-		return $this->belongsToMany("Ecommerce\Product","in_shopping_carts");
+		return $this->belongsToMany("Ecommerce\Product","in_shopping_carts")->withPivot('id');
 	}
 
 	public function order()

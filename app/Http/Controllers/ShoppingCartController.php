@@ -39,12 +39,11 @@ class ShoppingCartController extends Controller
 
  	public function index(Request $request)
  	{
+ 		$shopping_cart = $request->shopping_cart; 
 
- 		$shopping_cart = $request->shopping_cart;
+      	$products = $shopping_cart->products()->get();
 
-      	$products =$shopping_cart->products()->get();
-
-      	$total =$shopping_cart->total();
+      	$total = $shopping_cart->total();
 
       	return view("shopping_cart.index",["products"=>$products,"total"=>$total]);
  	}
