@@ -20,4 +20,9 @@ class Product extends Model
 									->setQuantity(1)
 									->setPrice($this->pricing / 100);
 	}
+
+	public function Categorie()
+	{
+		 return $this->belongsTo('Ecommerce\Categorie');
+	}
 }

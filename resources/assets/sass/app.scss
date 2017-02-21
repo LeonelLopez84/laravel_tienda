@@ -8,6 +8,9 @@
 .navbar{
 	margin-bottom: 0px;
 }
+.container-fluid{
+	margin-top:60px;
+}
 .big-padding{
 	padding:30px;
 }
@@ -119,6 +122,13 @@
 #list-products, #list-carrito{
 	.img-thumbnail{
 		max-width: 250px;
+		height: auto;
+	}
+}
+
+#form-product{
+	.img-thumbnail{
+		max-width: 150px;
 		height: auto;
 	}
 }

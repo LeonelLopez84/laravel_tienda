@@ -6,7 +6,7 @@
 	<h1>Compra completada</h1>
 </header>
 
-<div class="container" id="order">
+<div class="container-fluid" id="order">
 	<div class="card large-padding">
 		<h3>Tu pago fue procesado <span class="{{$order->status}}">{{$order->status}}</span></h3>
 		<p>Corrobora los detalles de tu envio:</p>

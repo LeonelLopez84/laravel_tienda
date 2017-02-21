@@ -3,9 +3,11 @@
 namespace Ecommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ecommerce\Product;
 use Illuminate\Support\Facades\Auth;
 use Ecommerce\Http\Requests;
+
+use Ecommerce\Product;
+use Ecommerce\Categorie;
 
 class ProductsController extends Controller
 {
@@ -32,7 +34,12 @@ class ProductsController extends Controller
     public function create()
     {
         $product=new Product;
-        return view("products.create",['product'=>$product]);
+        $categories=[];
+        foreach(Categorie::where('categorie_id', '=', '0')->get() as $k=>$val){
+            $categories[$val->id]=$val->name;
+        }
+        
+        return view("products.create",['product'=>$product,'categories'=>$categories]);
     }
 
     /**
@@ -50,11 +57,11 @@ class ProductsController extends Controller
         $Product->title=$request->title;
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
+        $Product->categorie_id = $request->categorie;
         $Product->user_id = Auth::id();
 
         if($hasFile){
             $Product->extension = $request->cover->extension();
-
         }
 
         if($Product->save())
@@ -78,6 +85,7 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product=Product::find($id);
+
         return view("products.show",["product"=>$product]);
         
     }
@@ -91,7 +99,11 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product=Product::find($id);
-        return view("products.edit",["product"=>$product]);
+        $categories=[];
+        foreach(Categorie::where('categorie_id', '=', '0')->get() as $k=>$val){
+            $categories[$val->id]=$val->name;
+        }
+        return view("products.edit",["product"=>$product,'categories'=>$categories]);
     }
 
     /**
@@ -110,6 +122,7 @@ class ProductsController extends Controller
         $Product->title=$request->title;
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
+        $Product->categorie_id = $request->categorie;
         $Product->user_id = Auth::id();
 
         if($hasFile){

@@ -13,6 +13,8 @@
 						<p><strong>Descripción</strong></p>
 						<p>{{$product->description}}</p>
 						<p><strong>$ {{number_format($product->pricing)}}</strong></p>
+						<p><a href="{{url('/categories/'.$product->Categorie->upCategorie->id)}}" class="label label-success">{{$product->Categorie->upCategorie->name}}</a></p>
+						<p><a href="{{url('/categories/'.$product->Categorie->id)}}"  class="label label-default">{{$product->Categorie->name}}</a></p>
 						<p>@include("in_shopping_carts.form",["product"=>$product])</p>
 					</div> 
 					

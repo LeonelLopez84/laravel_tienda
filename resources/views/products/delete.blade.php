@@ -1,3 +1,3 @@
 {{Form::open(['url'=>'/products/'.$product->id,'method'=>'DELETE','class'=>'inline-block'])}}
-<input class="btn btn-warning" type="submit" class="btn btn-link red-text no-padding no-margin" value="Eliminar">
+	<button  type="submit"  class="btn btn-danger" value="Eliminar" title="delete forever"><i class="fa fa-trash"></i></button>
 {{Form::close()}}
