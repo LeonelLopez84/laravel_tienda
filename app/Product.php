@@ -2,10 +2,17 @@
 
 namespace Ecommerce;
 
+use Illuminate\Database\Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+
+use Cartalyst\Tags\TaggableTrait;
+use Cartalyst\Tags\TaggableInterface;
+
+class Product extends Model implements TaggableInterface
 {
+
+	use TaggableTrait;
 
 	public static function scopeLatest($query)
 	{

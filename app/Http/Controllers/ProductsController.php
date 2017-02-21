@@ -9,6 +9,7 @@ use Ecommerce\Http\Requests;
 use Ecommerce\Product;
 use Ecommerce\Categorie;
 
+
 class ProductsController extends Controller
 {
     public function __construct()
@@ -58,6 +59,7 @@ class ProductsController extends Controller
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
         $Product->categorie_id = $request->categorie;
+
         $Product->user_id = Auth::id();
 
         if($hasFile){
@@ -123,6 +125,7 @@ class ProductsController extends Controller
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
         $Product->categorie_id = $request->categorie;
+        // tags $Product->tag('foo, bar, baz');
         $Product->user_id = Auth::id();
 
         if($hasFile){

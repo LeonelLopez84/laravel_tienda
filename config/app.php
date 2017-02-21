@@ -170,6 +170,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Ecommerce\Providers\ShoppingCartProvider::class,
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
+        Cartalyst\Tags\TagsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Paypalpayment' => Anouar\Paypalpayment\Facades\PaypalPayment::class,
+        'Tags'=>Cartalyst\Tags\TagsServiceProvider::class,
 
     ],
 
