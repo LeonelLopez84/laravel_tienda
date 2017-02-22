@@ -17,9 +17,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::resource('/tags','TagsController');
 Route::resource('/categories','CategoriesController');
 
 Route::resource('/products','ProductsController');
+
 
 Route::get('/carrito', 'ShoppingCartController@index');
 Route::post('/carrito', 'ShoppingCartController@checkout');

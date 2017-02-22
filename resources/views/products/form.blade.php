@@ -52,6 +52,17 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="col-sm-12 col-md-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Tags:</label>
+		    <div class="col-sm-10">
+				<input name="tags" class="form-control typeahead" type="text"  placeholder="Tags"  data-role="tagsinput"  value="{{$tags}}">
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="form-group text-right">
  <div class="col-sm-12">
 	<a class="btn btn-default" href="{{url('/products')}}">Regresar</a>

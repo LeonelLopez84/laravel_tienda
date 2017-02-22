@@ -54,12 +54,12 @@ class ProductsController extends Controller
         $hasFile = $request->hasFile('cover') && $request->cover->isValid();
 
         $Product=new Product;
-
+       
         $Product->title=$request->title;
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
         $Product->categorie_id = $request->categorie;
-
+        
         $Product->user_id = Auth::id();
 
         if($hasFile){
@@ -71,7 +71,8 @@ class ProductsController extends Controller
             if($hasFile){
                 $request->cover->storeAs('images',"{$Product->id}.{$Product->extension}");
             }
-
+            $Product->tag('foo, bar, baz');
+            $Product->save();
             return redirect("/products");
         }else{
             return view("products.create",["product"=>$product]);
@@ -105,7 +106,16 @@ class ProductsController extends Controller
         foreach(Categorie::where('categorie_id', '=', '0')->get() as $k=>$val){
             $categories[$val->id]=$val->name;
         }
-        return view("products.edit",["product"=>$product,'categories'=>$categories]);
+        
+       
+        $tags=array();
+        foreach($product->tags as $val){
+            $tags[]=$val->name;
+        }
+        
+        $tags=implode(',',$tags);
+
+        return view("products.edit",["product"=>$product,'categories'=>$categories,'tags'=>$tags]);
     }
 
     /**
@@ -125,12 +135,11 @@ class ProductsController extends Controller
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
         $Product->categorie_id = $request->categorie;
-        // tags $Product->tag('foo, bar, baz');
+        $Product->setTags($request->tags);
         $Product->user_id = Auth::id();
 
         if($hasFile){
             $Product->extension = $request->cover->extension();
-
         }
 
         if($Product->save())

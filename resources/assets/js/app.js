@@ -6,15 +6,14 @@ $(document).ready(function() {
 
 
 	$(".set-guide-number").editable({ajaxOptions:{type: "PUT"}});
-	$(".select-status").editable(
-	{
-		source:[
-				{value:"Creado",text:"Creado"},
-				{value:"Enviado",text:"Enviado"},
-				{value:"Recibido",text:"Recibido"}
-			],
-		 ajaxOptions:{type: "PUT"}
-   	});
+	$(".select-status").editable({
+									source:[
+											{value:"Creado",text:"Creado"},
+											{value:"Enviado",text:"Enviado"},
+											{value:"Recibido",text:"Recibido"}
+										],
+									 ajaxOptions:{type: "PUT"}
+							   	});
 
 $(document).on('submit','.add-to-cart',function(event) {
 	event.preventDefault();
@@ -59,18 +58,7 @@ $(document).on('submit','.add-to-cart',function(event) {
 
 	return false;
 });
-//-----------------------------------------------------------------------------------------------
-if($("#form-product").length){
-	subCategories($("select[name='mastercategories']")); 
-}
 
-
-$("#form-product").on('change', "select[name='mastercategories']", function(event) {
-	event.preventDefault();
-	/* Act on the event */
-	subCategories(this); 
-	return false;
-});
 
 function subCategories(Othis){
 
@@ -97,5 +85,51 @@ function subCategories(Othis){
 		console.log("complete");
 	});
 }
+//---------------------------------------------------------
+$("#form-product").keypress(function(event){
 
+    if (event.keyCode === 10 || event.keyCode === 13) 
+        event.preventDefault();
+
+  });
+
+//-----------------------------------------------------------------------------------------------
+if($("#form-product").length){
+	subCategories($("select[name='mastercategories']")); 
+}
+
+
+$("#form-product").on('change', "select[name='mastercategories']", function(event) {
+	event.preventDefault();
+	subCategories(this); 	
+	return false;
+});
+
+
+
+
+});
+
+
+var citynames = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: {
+    url: 'http://'+window.location.hostname+'/tags',
+    filter: function(list) {
+      return $.map(list, function(cityname) {
+        return { name: cityname }; });
+    }
+  }
+});
+
+citynames.initialize();
+
+$("input[name='tags']").tagsinput({
+  typeaheadjs: {
+    name: 'tags',
+    displayKey: 'name',
+    valueKey: 'name',
+    source: citynames.ttAdapter()
+  }
 });

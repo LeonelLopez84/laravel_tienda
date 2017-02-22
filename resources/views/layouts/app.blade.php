@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/css/ripples.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('css/bootstrap-tagsinput.css') }}">
    <!-- Styles -->
     <link href="{{ url('css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->
@@ -97,6 +98,8 @@
     <script src="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/js/material.min.js"></script>
     <script src="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/js/ripples.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script src="{{ url('js/bootstrap-tagsinput.min.js')}}"></script>
+    <script src="{{ url('js/typehead.bundle.js')}}"></script>
     <script>
           $.material.init();
     </script>

@@ -22,8 +22,8 @@ class CreateCategoriesTable extends Migration
         Schema::create($this->tablename,function(Blueprint $table){
 
             $table->increments("id");
-            $table->integer("categorie_id")->unsigned()->default(1)->index();
-            $table->string("name");
+            $table->integer("categorie_id")->unsigned()->default(0)->index();
+            $table->string("name")->unique();
             $table->text("description");
 
             $table->timestamps();

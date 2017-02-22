@@ -10,11 +10,16 @@
 						@endif
 					</div>
 					<div class="col-xs-12 col-sm-6">
-						<p><strong>Descripción</strong></p>
-						<p>{{$product->description}}</p>
-						<p><strong>$ {{number_format($product->pricing)}}</strong></p>
-						<p><a href="{{url('/categories/'.$product->Categorie->upCategorie->id)}}" class="label label-success">{{$product->Categorie->upCategorie->name}}</a></p>
-						<p><a href="{{url('/categories/'.$product->Categorie->id)}}"  class="label label-default">{{$product->Categorie->name}}</a></p>
+						<ul class="list-unstyled">
+							<li>{{$product->description}}</li>
+							<li><strong>$ {{number_format($product->pricing)}}</strong></li>
+							<li>
+								<ol class="breadcrumb">
+									<li><a href="{{url('/categories/'.$product->Categorie->upCategorie->id)}}">{{$product->Categorie->upCategorie->name}}</a></li>
+  									<li><a href="{{url('/categories/'.$product->Categorie->id)}}">{{$product->Categorie->name}}</a></li>
+  								</ol>								
+							</li>
+						</ul>
 						<p>@include("in_shopping_carts.form",["product"=>$product])</p>
 					</div> 
 					
