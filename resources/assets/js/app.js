@@ -96,6 +96,31 @@ $("#form-product").keypress(function(event){
 //-----------------------------------------------------------------------------------------------
 if($("#form-product").length){
 	subCategories($("select[name='mastercategories']")); 
+
+	var citynames = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  prefetch: {
+	    url: 'http://'+window.location.hostname+'/tags',
+	    filter: function(list) {
+	      return $.map(list, function(cityname) {
+	        return { name: cityname }; });
+	    }
+	  }
+	});
+
+
+	citynames.initialize();
+
+	$("input[name='tags']").tagsinput({
+	  typeaheadjs: {
+	    name: 'tags',
+	    displayKey: 'name',
+	    valueKey: 'name',
+	    source: citynames.ttAdapter()
+	  }
+	});
+
 }
 
 
@@ -105,31 +130,38 @@ $("#form-product").on('change', "select[name='mastercategories']", function(even
 	return false;
 });
 
+$("#form-product").on('click', '.open', function(event) {
+	event.preventDefault();
+	$(this).siblings("input[name='images[]']").trigger('click');
+});
 
+$("#form-product").on('click', '.close', function(event) {
+	event.preventDefault();
+	$(this).parents(".panel").remove();
+});
 
+$("#form-product").on('change', "input[name='images[]']", function(event) {
+	event.preventDefault();
+
+	var ele=this;
+	var child="<div class='panel panel-default'>"+$(this).parents(".panel").html()+"</div>";
+		$(this).parents(".panel").parent().prepend(child);	
+		
+		var reader= new FileReader();
+		reader.onload=function(e)
+		{
+			$(ele).siblings('.btn-warning').removeClass('hidden');
+			$(ele).parent().parent().prev().append("<img class='img-thumbnail center-block' src='"+e.target.result+"'>");
+		}
+		reader.readAsDataURL(this.files[0]);
+
+	$(this).siblings('.btn-info').addClass('hidden');
+	
+});
+
+//$('.carousel').carousel();
 
 });
 
 
-var citynames = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: {
-    url: 'http://'+window.location.hostname+'/tags',
-    filter: function(list) {
-      return $.map(list, function(cityname) {
-        return { name: cityname }; });
-    }
-  }
-});
 
-citynames.initialize();
-
-$("input[name='tags']").tagsinput({
-  typeaheadjs: {
-    name: 'tags',
-    displayKey: 'name',
-    valueKey: 'name',
-    source: citynames.ttAdapter()
-  }
-});

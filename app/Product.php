@@ -32,4 +32,9 @@ class Product extends Model implements TaggableInterface
 	{
 		 return $this->belongsTo('Ecommerce\Categorie');
 	}
+
+	public function Images()
+	{
+		return $this->hasMany('Ecommerce\Image');	
+	}
 }

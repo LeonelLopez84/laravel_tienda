@@ -8,6 +8,7 @@ use Ecommerce\Http\Requests;
 
 use Ecommerce\Product;
 use Ecommerce\Categorie;
+use Ecommerce\Image;
 
 
 class ProductsController extends Controller
@@ -50,33 +51,41 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $hasFile = $request->hasFile('cover') && $request->cover->isValid();
+    {        
 
-        $Product=new Product;
+        $Product = new Product;
        
         $Product->title=$request->title;
         $Product->description = $request->description;
         $Product->pricing = $request->pricing;
         $Product->categorie_id = $request->categorie;
-        
         $Product->user_id = Auth::id();
-
-        if($hasFile){
-            $Product->extension = $request->cover->extension();
-        }
 
         if($Product->save())
         {
-            if($hasFile){
-                $request->cover->storeAs('images',"{$Product->id}.{$Product->extension}");
+             foreach($request->images as $img){
+
+                $hasFile  = $request->hasFile('images') && $img->isValid();
+
+                 if($hasFile){
+                    $Image=new Image;
+                    $Image->extension = $img->extension();
+                    $Image->product_id = $Product->id;
+                    $Image->save();
+                    $Image->name = $Image->id .'.'.$Image->extension;
+                    $Image->save();
+                    $img->storeAs('images',$Image->name);
+                }
             }
-            $Product->tag('foo, bar, baz');
+
+            $Product->tag($request->tags);
+
             $Product->save();
             return redirect("/products");
         }else{
             return view("products.create",["product"=>$product]);
         }
+        
     }
 
     /**
