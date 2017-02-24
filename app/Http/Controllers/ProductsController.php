@@ -4,8 +4,9 @@ namespace Ecommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Ecommerce\Http\Requests;
+use Illuminate\Support\Facades\Storage;
 
+use Ecommerce\Http\Requests;
 use Ecommerce\Product;
 use Ecommerce\Categorie;
 use Ecommerce\Image;
@@ -63,25 +64,10 @@ class ProductsController extends Controller
 
         if($Product->save())
         {
-             foreach($request->images as $img){
-
-                $hasFile  = $request->hasFile('images') && $img->isValid();
-
-                 if($hasFile){
-                    $Image=new Image;
-                    $Image->extension = $img->extension();
-                    $Image->product_id = $Product->id;
-                    $Image->save();
-                    $Image->name = $Image->id .'.'.$Image->extension;
-                    $Image->save();
-                    $img->storeAs('images',$Image->name);
-                }
-            }
-
             $Product->tag($request->tags);
-
             $Product->save();
-            return redirect("/products");
+
+            return redirect("/products/".$Product->id.'/edit');
         }else{
             return view("products.create",["product"=>$product]);
         }
@@ -136,7 +122,6 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hasFile = $request->hasFile('cover') && $request->cover->isValid();
         
         $Product=Product::find($id);
 
@@ -147,18 +132,14 @@ class ProductsController extends Controller
         $Product->setTags($request->tags);
         $Product->user_id = Auth::id();
 
-        if($hasFile){
-            $Product->extension = $request->cover->extension();
-        }
-
         if($Product->save())
         {
-            if($hasFile){
-                $request->cover->storeAs('images',"{$Product->id}.{$Product->extension}");
-            }
-            return redirect("/products");
+            $Product->tag($request->tags);
+            $Product->save();
+
+            return redirect("/products/".$Product->id.'/edit');
         }else{
-            return view("products.edit",["product"=>$product]);
+            return view("products.create",["product"=>$product]);
         }
     }
 

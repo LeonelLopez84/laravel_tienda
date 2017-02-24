@@ -21,6 +21,7 @@ Route::resource('/tags','TagsController');
 Route::resource('/categories','CategoriesController');
 
 Route::resource('/products','ProductsController');
+Route::resource('/images','ImagesController');
 
 
 Route::get('/carrito', 'ShoppingCartController@index');

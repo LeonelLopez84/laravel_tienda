@@ -130,22 +130,47 @@ $("#form-product").on('change', "select[name='mastercategories']", function(even
 	return false;
 });
 
-$("#form-product").on('click', '.open', function(event) {
-	event.preventDefault();
-	$(this).siblings("input[name='images[]']").trigger('click');
+$("#form-product").on('click','.btn-info', function(event) {
+	$(this).siblings("input[name='image']").trigger('click');
 });
 
-$("#form-product").on('click', '.close', function(event) {
-	event.preventDefault();
+$("#form-product").on('click','.btn-warning', function(event) {
 	$(this).parents(".panel").remove();
 });
 
-$("#form-product").on('change', "input[name='images[]']", function(event) {
+$("#new-image").on('change', "input[name='image']", function(event) {
 	event.preventDefault();
 
-	var ele=this;
+	var form = $(this).parent();
+	var button = form.find(".btn-info");
+	var datos = {image: new FormData($("input[name='image']")[0])};
+
+	$.ajax({
+		url: form.attr("action"),
+		type: form.attr('method'),
+		dataType: 'json',
+		data:datos,
+		beforeSend:function(){
+		button.val("Cargando...");
+		}	
+	})
+	.done(function(data) {
+		console.log("success");
+		button.val("Agregado").removeClass('btn-info').addClass('btn-success');
+		console.log(data);
+	
+	})
+	.fail(function(error) {
+		console.log("error");
+		console.log(error.responseText);
+	})
+	.always(function() {
+		console.log("complete");
+	});
+
+	/*var ele=this;
 	var child="<div class='panel panel-default'>"+$(this).parents(".panel").html()+"</div>";
-		$(this).parents(".panel").parent().prepend(child);	
+		$(this).parents(".panel").parent().append(child);
 		
 		var reader= new FileReader();
 		reader.onload=function(e)
@@ -155,11 +180,11 @@ $("#form-product").on('change', "input[name='images[]']", function(event) {
 		}
 		reader.readAsDataURL(this.files[0]);
 
-	$(this).siblings('.btn-info').addClass('hidden');
-	
+	$(this).siblings('.btn-info').addClass('hidden');*/
 });
 
-//$('.carousel').carousel();
+//-----------------------------------------------------------------
+
 
 });
 
