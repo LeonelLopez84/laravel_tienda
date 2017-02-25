@@ -35,12 +35,10 @@ class ImagesController extends Controller
      */
     public function store(Request $request)
     {
-        
-         if($request->hasFile('image')){
-        	return	'si';
-        }else{
-        	return 'no';
-        }
+        $path = $request->file('image')->storeAs(
+                'images', $request->product_id.'.jpg'
+            );
+        return $path;
     }
 
     /**

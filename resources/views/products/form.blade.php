@@ -51,18 +51,21 @@
 		<div class="panel panel-default">
 		  	<div class="panel-body">
 		    	<div class="row" >
-					<div class="col-sm-10 col-md-10 container-img">
+					<div class="col-sm-8 col-md-8 container-img">
 
 					</div>
-					<div class="col-sm-2 col-md-2	 text-right">
-						<div class="btn-group" role="group" aria-label="...">
-							{{ Form::open(['url'=>'/images','file'=>true,'enctype'=>"multipart/form-data",'method'=>'POST','id'=>'new-image']) }}
-								<button type="button" class="btn btn-info <?php echo (empty($product->title))?'disabled':''; ?>" ><i class="fa fa-folder-open"></i></button>
-								<button type="button" class="btn btn-warning hidden"><i class="fa fa-close "></i></button>
-							   {{ Form::file('image',['class'=>'hidden']) }}
-							   {{ Form::hidden('product_id',$product->id) }}
+					<div class="col-sm-4 col-md-4	 text-right">
+						
+							{{ Form::open(['url'=>'/images','files'=>true,'method'=>'POST','id'=>'new-image']) }}
+								<div class="btn-group" role="group" aria-label="...">				
+									<button type="button" class="btn btn-info <?php echo (empty($product->title))?'disabled':''; ?>" ><i class="fa fa-folder-open"></i></button>
+									<button type="button" class="btn btn-warning hidden"><i class="fa fa-close "></i></button>
+									<button type="submit" class="btn btn-success"><i class="fa fa-upload "></i></button>
+								 
+								   {{ Form::file('image',['class'=>'hidden']) }}
+								   {{ Form::hidden('product_id',$product->id) }}
+								</div>	
 							 {{ Form::close() }}
-						</div>
 							
 					</div>
 				</div>

@@ -138,53 +138,49 @@ $("#form-product").on('click','.btn-warning', function(event) {
 	$(this).parents(".panel").remove();
 });
 
-$("#new-image").on('change', "input[name='image']", function(event) {
-	event.preventDefault();
-
-	var form = $(this).parent();
-	var button = form.find(".btn-info");
-	var datos = {image: new FormData($("input[name='image']")[0])};
-
-	$.ajax({
-		url: form.attr("action"),
-		type: form.attr('method'),
-		dataType: 'json',
-		data:datos,
-		beforeSend:function(){
-		button.val("Cargando...");
-		}	
-	})
-	.done(function(data) {
-		console.log("success");
-		button.val("Agregado").removeClass('btn-info').addClass('btn-success');
-		console.log(data);
-	
-	})
-	.fail(function(error) {
-		console.log("error");
-		console.log(error.responseText);
-	})
-	.always(function() {
-		console.log("complete");
-	});
-
-	/*var ele=this;
-	var child="<div class='panel panel-default'>"+$(this).parents(".panel").html()+"</div>";
-		$(this).parents(".panel").parent().append(child);
-		
-		var reader= new FileReader();
-		reader.onload=function(e)
-		{
-			$(ele).siblings('.btn-warning').removeClass('hidden');
-			$(ele).parent().parent().prev().append("<img class='img-thumbnail center-block' src='"+e.target.result+"'>");
-		}
-		reader.readAsDataURL(this.files[0]);
-
-	$(this).siblings('.btn-info').addClass('hidden');*/
-});
-
 //-----------------------------------------------------------------
+$(document).on('submit', "#new-image", function(event) {
+        event.preventDefault();
 
+        var form=$(this);
+        var formData=new FormData(this);
+
+        $.ajax({
+            cache:false,
+            processData: false,
+            contentType: false,
+            url:form.attr('action'),
+            type:form.attr('method'),
+            dataType: 'json',
+            data: formData
+        })
+        .done(function(data) {
+            console.log("success");
+            console.log(data);
+        })
+        .fail(function(error) {
+            console.log("error");
+            console.log(error.responseText);
+        })
+        .always(function() {
+            console.log("complete");
+        });
+        
+
+        /*var ele=this;
+    var child="<div class='panel panel-default'>"+$(this).parents(".panel").html()+"</div>";
+        $(this).parents(".panel").parent().append(child);
+        
+        var reader= new FileReader();
+        reader.onload=function(e)
+        {
+            $(ele).siblings('.btn-warning').removeClass('hidden');
+            $(ele).parent().parent().prev().append("<img class='img-thumbnail center-block' src='"+e.target.result+"'>");
+        }
+        reader.readAsDataURL(this.files[0]);
+
+    $(this).siblings('.btn-info').addClass('hidden');*/
+});
 
 });
 
