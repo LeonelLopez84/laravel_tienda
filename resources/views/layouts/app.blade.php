@@ -10,11 +10,11 @@
 
     <title>{{ config('app.name', 'Tienda') }}</title>
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/css/material.min.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/css/ripples.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ url('css/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/css/style.css') }}">
    <!-- Styles -->
     <link href="{{ url('css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->
@@ -94,15 +94,17 @@
     <!-- Scripts -->
     <script  src="https://code.jquery.com/jquery-3.1.1.min.js"  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    <script src="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/js/material.min.js"></script>
-    <script src="//cdn.jsdelivr.net/bootstrap.material-design/0.3.0/js/ripples.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
     <script src="{{ url('js/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{ url('js/typehead.bundle.js')}}"></script>
-    <script>
-          $.material.init();
-    </script>
+    <script type="application/x-javascript"> 
+        addEventListener("load", function() { 
+                setTimeout(hideURLbar, 0); 
+                }, false); 
+        function hideURLbar(){ 
+            window.scrollTo(0,1); 
+        } </script>
+
     <script src="{{ url('/js/app.js') }}"></script>
 </body>
 </html>
