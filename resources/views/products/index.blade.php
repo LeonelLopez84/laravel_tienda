@@ -1,9 +1,16 @@
 @extends("layouts.app")
 
 @section("content")
-	<div class="container-fluid" id="list-products">
-		<div class="big-padding text-center blue-grey white-text">
+	<div class="container" id="list-products">
+		<div class="text-center">
 			<h1>Productos</h1>
+		</div>
+		<div class="row">		
+			<div class="col-sm-12 col-md-12">
+					<a class="btn btn-primary pull-right" href="{{url('/products/create')}}">
+						<i class="fa fa-plus"></i> Agregar 
+					</a>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12 col-md-12">
@@ -44,11 +51,6 @@
 				@endforeach			
 				</tbody>
 				</table>
-				<div class="floating">		
-					<a class="btn btn-primary" href="{{url('/products/create')}}">
-						<i class="material-icons"></i>Add
-					</a>
-				</div>
 			</div>
 		</div>
 	</div>

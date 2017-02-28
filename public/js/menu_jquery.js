@@ -21,7 +21,7 @@ $('#cssmenu > ul > li > a').click(function() {
 
 
 // Login Form
-$(function() {
+/*$(function() {
     var button = $('#loginButton');
     var box = $('#loginBox');
     var form = $('#loginForm');
@@ -39,4 +39,4 @@ $(function() {
             box.hide();
         }
     });
-});
+});*/

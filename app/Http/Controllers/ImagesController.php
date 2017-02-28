@@ -4,6 +4,7 @@ namespace Ecommerce\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Ecommerce\Image;
 
 class ImagesController extends Controller
 {
@@ -35,10 +36,18 @@ class ImagesController extends Controller
      */
     public function store(Request $request)
     {
-        $path = $request->file('image')->storeAs(
-                'images', $request->product_id.'.jpg'
-            );
-        return $path;
+        if($request->hasFile('image')){
+            $Image = new Image;
+            $Image->extension = $request->image->extension();
+            $Image->product_id = $request->product_id;
+            if($Image->save()){
+                $Image->name = "{$Image->id}.{$Image->extension}";
+                $Image->save();
+                $path = $request->file('image')->storeAs('images',$Image->name);
+                
+                return response()->json(['path'=>$path,'id'=>$Image->id]);
+            }
+        }
     }
 
     /**
@@ -83,6 +92,13 @@ class ImagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Image=Image::find($id);
+        $id=$Image->id;
+        $name=$Image->name;
+        $Image->delete();
+        //Storage::setVisibility("images/{$name}", 'public');
+        Storage::delete("images/{#$name}");
+        return response()->json(['id'=>$id]);
+
     }
 }

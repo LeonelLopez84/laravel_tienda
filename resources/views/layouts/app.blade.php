@@ -11,15 +11,13 @@
     <title>{{ config('app.name', 'Tienda') }}</title>
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="{{ url('css/megamenu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('public/css/style.css') }}">
-    <link href="{{ url('css/app.css') }}" rel="stylesheet">
-    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">   
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
-    <!-- Scripts -->
+    <link rel="stylesheet" href="{{ asset('css/megamenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-tagsinput.css')}}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <script>
         window.Laravel = <?php echo json_encode([
@@ -46,41 +44,20 @@
         </div>
     </div>
 </div>
+<div class="header_bg">
+<div class="container">
+    <div class="header">
+    <div class="head-t">
+        <div class="logo">
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" class="img-responsive" alt=""/> </a>
+        </div>
+        <!-- start header_right -->
+        <div class="header_right">
+            <div class="rgt-bottom">
 
-  <!--  <div id="app">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                       Tienda
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="{{url('/carrito')}}">
-                                Mi carrito
-                                <span class="badge circle-shopping-cart">{{$productsCount}}</span>
-                            </a>
-                        </li>
-                        
+                <ul class="nav navbar-nav">                        
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/login') }}" id="loginButton"><span>Login</span></a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
@@ -104,55 +81,18 @@
                             </li>
                         @endif
                     </ul>
-                </div>
-            </div>
-        </nav>-->
 
-        <div class="header_bg">
-<div class="container">
-    <div class="header">
-    <div class="head-t">
-        <div class="logo">
-            <a href="index.html"><img src="img/logo.png" class="img-responsive" alt=""/> </a>
-        </div>
-        <!-- start header_right -->
-        <div class="header_right">
-            <div class="rgt-bottom">
-                <div class="log">
-                    <div class="login" >
-                        <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
-                            <div id="loginBox">                
-                                <form id="loginForm">
-                                        <fieldset id="body">
-                                            <fieldset>
-                                                  <label for="email">Email Address</label>
-                                                  <input type="text" name="email" id="email">
-                                            </fieldset>
-                                            <fieldset>
-                                                    <label for="password">Password</label>
-                                                    <input type="password" name="password" id="password">
-                                             </fieldset>
-                                            <input type="submit" id="login" value="Sign in">
-                                            <label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
-                                        </fieldset>
-                                    <span><a href="#">Forgot your password?</a></span>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="reg">
-                    <a href="register.html">REGISTER</a>
-                </div>
             <div class="cart box_1">
-                <a href="checkout.html">
-                    <h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)<img src="img/bag.png" alt=""></h3>
+                  <a href="{{url('/carrito')}}">
+                    <h3> <span class="simpleCart_total">$0.00</span> 
+                    (<span id="simpleCart_quantity" class="simpleCart_quantity">{{$productsCount}}</span> items)
+                    <i class="fa fa-shopping-cart"></i></h3>
                 </a>    
                 <p><a href="javascript:;" class="simpleCart_empty">(empty card)</a></p>
                 <div class="clearfix"> </div>
             </div>
             <div class="create_btn">
-                <a href="checkout.html">CHECKOUT</a>
+                  <a href="{{url('/carrito')}}">CHECKOUT</a>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -818,7 +758,7 @@
     <div class="container">
         <div class="arriv-top">
             <div class="col-md-6 arriv-left">
-                <img src="img/1.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/1.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info">
                     <h3>NEW ARRIVALS</h3>
                     <p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
@@ -828,7 +768,7 @@
                 </div>
             </div>
             <div class="col-md-6 arriv-right">
-                <img src="img/2.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/2.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info">
                     <h3>TUXEDO</h3>
                     <p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
@@ -841,7 +781,7 @@
         </div>
         <div class="arriv-bottm">
             <div class="col-md-8 arriv-left1">
-                <img src="img/3.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/3.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info1">
                     <h3>SWEATER</h3>
                     <p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
@@ -851,7 +791,7 @@
                 </div>
             </div>
             <div class="col-md-4 arriv-right1">
-                <img src="img/4.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/4.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info2">
                     <a href="details.html"><h3>Trekking Shoes<i class="ars"></i></h3></a>
                 </div>
@@ -860,13 +800,13 @@
         </div>
         <div class="arriv-las">
             <div class="col-md-4 arriv-left2">
-                <img src="img/5.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/5.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info2">
                     <a href="details.html"><h3>Casual Glasses<i class="ars"></i></h3></a>
                 </div>
             </div>
             <div class="col-md-4 arriv-middle">
-                <img src="img/6.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/6.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info3">
                     <h3>FRESH LOOK T-SHIRT</h3>
                     <div class="crt-btn">
@@ -875,7 +815,7 @@
                 </div>
             </div>
             <div class="col-md-4 arriv-right2">
-                <img src="img/7.jpg" class="img-responsive" alt="">
+                <img src="{{ asset('img/7.jpg') }}" class="img-responsive" alt="">
                 <div class="arriv-info2">
                     <a href="details.html"><h3>Elegant Watches<i class="ars"></i></h3></a>
                 </div>
@@ -891,7 +831,7 @@
         <div class="specia-top">
             <ul class="grid_2">
         <li>
-                <a href="details.html"><img src="img/8.jpg" class="img-responsive" alt=""></a>
+                <a href="details.html"><img src="{{ asset('img/8.jpg') }}" class="img-responsive" alt=""></a>
                 <div class="special-info grid_1 simpleCart_shelfItem">
                     <h5>Lorem ipsum dolor</h5>
                     <div class="item_add"><span class="item_price"><h6>ONLY $40.00</h6></span></div>
@@ -899,7 +839,7 @@
                 </div>
         </li>
         <li>
-                <a href="details.html"><img src="img/9.jpg" class="img-responsive" alt=""></a>
+                <a href="details.html"><img src="{{ asset('img/9.jpg') }}" class="img-responsive" alt=""></a>
                 <div class="special-info grid_1 simpleCart_shelfItem">
                     <h5>Consectetur adipis</h5>
                     <div class="item_add"><span class="item_price"><h6>ONLY $60.00</h6></span></div>
@@ -907,7 +847,7 @@
             </div>
         </li>
         <li>
-                <a href="details.html"><img src="img/10.jpg" class="img-responsive" alt=""></a>
+                <a href="details.html"><img src="{{ asset('img/10.jpg') }}" class="img-responsive" alt=""></a>
                 <div class="special-info grid_1 simpleCart_shelfItem">
                     <h5>Commodo consequat</h5>
                     <div class="item_add"><span class="item_price"><h6>ONLY $14.00</h6></span></div>
@@ -915,7 +855,7 @@
             </div>
         </li>
         <li>
-                <a href="details.html"><img src="img/11.jpg" class="img-responsive" alt=""></a>
+                <a href="details.html"><img src="{{ asset('img/11.jpg') }}" class="img-responsive" alt=""></a>
                 <div class="special-info grid_1 simpleCart_shelfItem">
                     <h5>Voluptate velit</h5>
                     <div class="item_add"><span class="item_price"><h6>ONLY $37.00</h6></span></div>
@@ -1020,15 +960,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 
-    <script type="text/javascript" src="js/megamenu.js"></script>
+    <script type="text/javascript" src="{{ asset('js/megamenu.js') }} "></script>
     <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-    <script src="js/menu_jquery.js"></script>
-    <script src="js/simpleCart.min.js"> </script>
+    <script src="{{ asset('js/menu_jquery.js') }} "></script>
+    <!--<script src="js/simpleCart.min.js"> </script>-->
 
-    <script src="{{ url('js/bootstrap-tagsinput.min.js')}}"></script>
-    <script src="{{ url('js/typehead.bundle.js')}}"></script>
+    <script src="{{ asset('js/bootstrap-tagsinput.min.js')}}"></script>
+    <script src="{{ asset('js/typehead.bundle.js')}}"></script>
 
     
-    <script src="{{ url('/js/app.js') }}"></script>
+    <script src="{{ URL::asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -67,7 +67,7 @@ class ProductsController extends Controller
             $Product->tag($request->tags);
             $Product->save();
 
-            return redirect("/products/".$Product->id.'/edit');
+            return redirect("/products/{$Product->id}/edit");
         }else{
             return view("products.create",["product"=>$product]);
         }
@@ -137,7 +137,7 @@ class ProductsController extends Controller
             $Product->tag($request->tags);
             $Product->save();
 
-            return redirect("/products/".$Product->id.'/edit');
+            return redirect("/products/{$Product->id}/edit");
         }else{
             return view("products.create",["product"=>$product]);
         }

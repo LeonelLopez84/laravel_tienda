@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-	<div class="container-fluid white">
+	<div class="container white">
 
 		<h1>Editar Producto</h1>
 		<div class="row">
