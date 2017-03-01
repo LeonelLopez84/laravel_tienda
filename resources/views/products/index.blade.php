@@ -34,9 +34,10 @@
 						<td>{{$product->id}}</td>
 						<td><a href="{{url('/products/'.$product->id)}}">{{$product->title}}</a></td>
 						<td>
-							@if($product->extension)
-								<img src="{{url("/products/images/{$product->id}.{$product->extension}")}}" class="img-thumbnail">
-							@endif
+							@foreach($product->Images as $img)
+								<img src="{{url("/products/images/{$img->name}")}}" class="img-thumbnail">
+							@break
+							@endforeach
 						</td>
 						<td>{{$product->description}}</td>
 						<td>{{$product->pricing}}</td>

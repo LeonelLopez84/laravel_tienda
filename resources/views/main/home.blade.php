@@ -3,7 +3,7 @@
 @section('title','Productos')
 
 @section('content')
-<div class="container-fluid"> 
+<div class="container"> 
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			<h1>Bienvenidos</h1>
@@ -12,7 +12,7 @@
 	<div class="text-center products-center">
 		<div class="row">
 			@foreach($products as $product)		
-				<div class="col-sm-12 col-md-6 col-lg-4">
+				<div class="col-sm-12 col-md-4 col-lg-4">
 					@include("products.product",["product"=>$product])
 				</div>
 			@endforeach

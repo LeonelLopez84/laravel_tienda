@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-	<div class="container-fluid white">
+	<div class="container white">
 		<div class="row">
 			<div class="col-sm-12 col-md-12">
 				<h1>Nuevo Producto</h1>
